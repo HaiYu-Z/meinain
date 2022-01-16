@@ -3,7 +3,7 @@
 <mapper namespace="com.atguigu.dao.OrderSettingDao">
 
     <insert id="add" parameterType="com.atguigu.pojo.OrderSetting">
-        insert into t_ordersetting(orderdate, number) values(#{orderDate},#{number})
+        insert into t_ordersetting(orderdate, number, reservations) values(#{orderDate},#{number},#{reservations})
     </insert>
     <update id="updateForOrderDate" parameterType="com.atguigu.pojo.OrderSetting">
         update t_ordersetting set number=#{number} where orderDate=#{orderDate}
@@ -11,5 +11,10 @@
 
     <select id="findOrderSettingByOrderDate" resultType="java.lang.Integer">
         select count(orderDate) from t_ordersetting where orderDate=#{orderDate}
+    </select>
+
+    <select id="getOrderSettingByMonth" parameterType="string" resultType="OrderSetting">
+        select id, orderDate, number, reservations from t_ordersetting
+        where orderDate between #{startDate} and #{endDate}
     </select>
 </mapper>

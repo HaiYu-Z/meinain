@@ -140,7 +140,7 @@
 }
 .everyday .fulled {
     height: 100%;
-    background: #ff9c9d;
+    background: #e1313c;
     text-align: center;
     color: #fff;
     display: flex;
@@ -160,7 +160,7 @@
     border: none;
     background: #d6ffff;
     padding: 3px 10px;
-    color: #98FB98;
+    color: #0ea00e;
     border-radius: 4px;
     font-size: 16px;
 }
@@ -271,7 +271,7 @@
 .clearfix {clear: both}
 .month .currentdate { float: left}
 .month .choose { 
-    float: right;
+    float: left;
     line-height: 57px;
     padding-right: 30px;
     color: #676767

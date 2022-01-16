@@ -55,9 +55,9 @@
                                 <span class="choose-month">{{ currentMonth }}月</span>
                             </div>
                             <div class="choose">
-                                <span @click="goCurrentMonth(currentYear,currentMonth)" class="gotoday">今天</span>
-                                <span @click="pickPre(currentYear,currentMonth)">❮</span>
-                                <span @click="pickNext(currentYear,currentMonth)">❯</span>
+                                &nbsp;<span @click="pickPre(currentYear,currentMonth)">❮</span>
+                                &nbsp;<span @click="pickNext(currentYear,currentMonth)">❯</span>
+                                &nbsp;<span @click="goCurrentMonth(currentYear,currentMonth)" class="gotoday">今天</span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -87,16 +87,16 @@
                                             
 											<template>
                                                 <template v-for="obj in leftobj">
-                                                    <template v-if="obj.date == dayobject.day.getDate()">
+                                                    <template v-if="obj.orderDate == dayobject.day.getDate()">
                                                         <template v-if="obj.number > obj.reservations">
-                                                            <div class="usual">
-                                                                <p>可预约{{obj.number}}人</p>
+                                                            <div class="usual" id="">
+                                                                <p>总可预约{{obj.number}}人</p>
                                                                 <p>已预约{{obj.reservations}}人</p>
                                                             </div>
                                                         </template>
                                                         <template v-else>
                                                             <div class="fulled">
-                                                                <p>可预约{{obj.number}}人</p>
+                                                                <p>总可预约{{obj.number}}人</p>
                                                                 <p>已预约{{obj.reservations}}人</p>
                                                                 <p>已满</p>
                                                             </div>
@@ -128,17 +128,53 @@
                 currentDay: 1,
                 currentMonth: 1,
                 LocalMonth: 1,
-                currentYear: 1970,
+                currentYear: 2022,
                 currentWeek: 1,
                 days: [],
                 leftobj: []//用于装载页面显示的月份已经进行预约设置的数据
             },
             created: function () {//在vue初始化时调用
-                this.initData(null);
+                this.initData(null)
+                this.initOrderSetting()
             },
             methods: {
+                initOrderSetting() {
+                    axios.get("/orderSetting/getOrderSettingByMonth.do?date=" + this.currentYear + "-" + this.currentMonth).then((resp) => {
+                        if (resp.data.flag) {
+                            for (let i = 0; i < resp.data.data.length; i++) {
+                                // 将年月日转化为日
+                                resp.data.data[i].orderDate = resp.data.data[i].orderDate.split("-")[2]
+                            }
+                            this.leftobj = resp.data.data
+                        } else {
+                            this.$message.error(resp.data.message)
+                        }
+                    })
+                },
+
 				//预约设置
                 handleOrderSet(day){
+                    this.$prompt('请输入预约人数', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        inputPattern: /^[0-9]\d*$/,
+                        inputErrorMessage: '请输入数字'
+                    }).then(({ value }) => {
+                        let orderDate = day.getFullYear() + "\/" + (day.getMonth() + 1) + "\/" + day.getDate()
+                        axios.get("/orderSetting/updateAndAdd.do?orderDate=" + orderDate + "&number=" + value).then((resp) => {
+                            if (resp.data.flag) {
+                                this.initOrderSetting()
+                                this.$message.success(resp.data.message)
+                            } else {
+                                this.$message.error(resp.data.message)
+                            }
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '取消输入'
+                        });
+                    });
                 },
 				//上传之前进行文件格式校验
                 beforeUpload(file){
@@ -188,9 +224,7 @@
                         date = new Date(cur);
                     } else {
                         var now = new Date();
-                        var d = new Date(this.formatDate(now.getFullYear(), now.getMonth(), 1));
-                        d.setDate(42);
-                        date = new Date(this.formatDate(d.getFullYear(), d.getMonth()+1, 1));
+                        date = new Date(this.formatDate(now.getFullYear(), now.getMonth()+1, 1));
                     }
                     this.currentDay = date.getDate();
                     this.currentYear = date.getFullYear();
@@ -245,6 +279,7 @@
                 goCurrentMonth: function (year, month) {
                     var d = new Date();
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+                    this.initOrderSetting()
                 },
 				//向前一个月
                 pickPre: function (year, month) {
@@ -254,12 +289,14 @@
                     var d = new Date(this.formatDate(year, month, 1));
                     d.setDate(0);
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+                    this.initOrderSetting()
                 },
 				//向后一个月
                 pickNext: function (year, month) {
                     var d = new Date(this.formatDate(year, month, 1));
                     d.setDate(42);////获取指定天之后的日期
                     this.initData(this.formatDate(d.getFullYear(), d.getMonth() + 1, 1));
+                    this.initOrderSetting()
                 },
                 // 返回 类似 2016-01-02 格式的字符串
                 formatDate: function (year, month, day) {
