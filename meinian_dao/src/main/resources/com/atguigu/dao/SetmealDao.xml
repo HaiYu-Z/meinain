@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.SetmealDao">
+    <insert id="add" parameterType="com.atguigu.pojo.Setmeal" keyProperty="id" useGeneratedKeys="true">
+        insert into t_setmeal(name,code,helpCode,sex,age,price,remark,attention,img)
+        values(#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+    </insert>
+    
+    <insert id="setSetmealIdAndTravelGroupId" parameterType="list">
+        insert into t_setmeal_travelgroup(setmeal_id, travelgroup_id)
+        values
+        <foreach collection="paramData" item="item" separator=",">
+            (#{item.id}, #{item.ids})
+        </foreach>
+    </insert>
+
+    <select id="findPage" parameterType="string" resultType="com.atguigu.pojo.Setmeal">
+        select id,name,code,helpCode,sex,age,price,remark,attention,img from t_setmeal
+        <where>
+            <if test="queryString!=null and queryString.length>0">
+                code=#{queryString} or name like concat('%', #{queryString}, '%') or helpCode=#{queryString}
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="integer">
+        delete from t_setmeal where id = #{id}
+    </delete>
+
+    <delete id="deleteTravelGroupIdBySetmealId" parameterType="integer">
+        delete from t_setmeal_travelgroup where setmeal_id = #{id}
+    </delete>
+</mapper>

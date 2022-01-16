@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.TravelGroupDao">
+
+    <insert id="add" parameterType="com.atguigu.pojo.TravelGroup" keyProperty="id" useGeneratedKeys="true">
+        insert into t_travelgroup(code,name,helpCode,sex,remark,attention)
+        values(#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+
+    <insert id="setTravelGroupAndTravelItem" parameterType="list">
+        insert into t_travelgroup_travelitem(travelgroup_id, travelitem_id)
+        values
+        <foreach collection="paramData" item="item" separator=",">
+            (#{item.id}, #{item.ids})
+        </foreach>
+    </insert>
+
+    <select id="findPage" parameterType="string" resultType="com.atguigu.pojo.TravelGroup">
+        select id,code,name,helpCode,sex,remark,attention from t_travelgroup
+        <where>
+            <if test="queryString!=null and queryString.length>0">
+                code=#{queryString} or name like concat('%', #{queryString}, '%') or helpCode=#{queryString}
+            </if>
+        </where>
+    </select>
+
+    <select id="getById" parameterType="integer" resultType="com.atguigu.pojo.TravelGroup">
+        select id,code,name,helpCode,sex,remark,attention from t_travelgroup where id = #{id}
+    </select>
+
+    <select id="getTravelItemIdsByTravelGroup" parameterType="integer" resultType="integer">
+        select travelitem_id from t_travelgroup_travelitem where travelgroup_id = #{id}
+    </select>
+
+    <delete id="delete" parameterType="integer">
+        delete from t_travelgroup where id = #{id}
+    </delete>
+
+    <delete id="deleteTravelItemIdsByTravelGroup" parameterType="integer">
+        delete from t_travelgroup_travelitem where travelgroup_id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.atguigu.pojo.TravelGroup">
+        update t_travelgroup
+        <set>
+            <if test="code != null and code.length > 0">
+                code = #{code},
+            </if>
+            <if test="name != null and name.length > 0">
+                name = #{name},
+            </if>
+            <if test="helpCode != null and helpCode.length > 0">
+                helpCode = #{helpCode},
+            </if>
+            <if test="sex != null and sex.length > 0">
+                sex = #{sex},
+            </if>
+            <if test="remark != null and remark.length > 0">
+                remark = #{remark},
+            </if>
+            <if test="attention != null and attention.length > 0">
+                attention = #{attention},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getAll" resultType="com.atguigu.pojo.TravelGroup">
+        select id,code,name,helpCode,sex,remark,attention from t_travelgroup
+    </select>
+</mapper>
+
+

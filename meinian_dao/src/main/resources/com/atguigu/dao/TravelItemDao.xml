@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.TravelItemDao">
+
+    <insert id="add" parameterType="com.atguigu.pojo.TravelItem">
+        insert into t_travelitem(code, name, sex, age, price, type, remark, attention)
+        values(#{code}, #{name}, #{sex}, #{age}, #{price}, #{type}, #{remark}, #{attention})
+    </insert>
+
+    <select id="findPage" parameterType="java.lang.String" resultType="com.atguigu.pojo.TravelItem">
+        select id, code, name, sex, age, price, type, remark, attention from t_travelitem
+        <where>
+            <if test="queryString != null and queryString.length > 0">
+                code = #{queryString} or `name` like concat('%', #{queryString}, '%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="integer">
+        delete from t_travelitem where id = #{id}
+    </delete>
+
+    <delete id="deleteTravelItemIdsFromTravelGroup" parameterType="integer">
+        delete from t_travelgroup_travelitem where travelitem_id = #{id}
+    </delete>
+
+    <select id="getById" parameterType="integer" resultType="com.atguigu.pojo.TravelItem">
+        select id, code, name, sex, age, price, type, remark, attention from t_travelitem where id = #{id}
+    </select>
+
+    <select id="getAll" resultType="com.atguigu.pojo.TravelItem">
+        select id, code, name, sex, age, price, type, remark, attention from t_travelitem
+    </select>
+
+    <update id="update" parameterType="com.atguigu.pojo.TravelItem">
+        update t_travelitem
+        <set>
+            <if test="code != null and code.length > 0">
+                code = #{code},
+            </if>
+            <if test="name != null and name.length > 0">
+                name = #{name},
+            </if>
+            <if test="sex != null and sex.length > 0">
+                sex = #{sex},
+            </if>
+            <if test="age != null and age.length > 0">
+                age = #{age},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="type != null and type.length > 0">
+                type = #{type},
+            </if>
+            <if test="remark != null and remark.length > 0">
+                remark = #{remark},
+            </if>
+            <if test="attention != null and attention.length > 0">
+                attention = #{attention}
+            </if>
+        </set>
+    </update>
+</mapper>
