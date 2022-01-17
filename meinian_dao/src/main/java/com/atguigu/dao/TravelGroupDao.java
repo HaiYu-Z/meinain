@@ -26,4 +26,11 @@ public interface TravelGroupDao {
     void update(TravelGroup travelGroup);
 
     List<TravelGroup> getAll();
+
+    /**
+     * 封装Setmeal对象的travelGroups属性
+     * @param id
+     * @return
+     */
+    List<TravelGroup> getTravelGroupById(Integer id);
 }

@@ -21,4 +21,11 @@ public interface TravelItemDao {
     List<TravelItem> getAll();
 
     void deleteTravelItemIdsFromTravelGroup(Integer id);
+
+    /**
+     * 封装TravelGroup对象的travelItems属性
+     * @param id
+     * @return
+     */
+    List<TravelItem> getTravelItemById(Integer id);
 }

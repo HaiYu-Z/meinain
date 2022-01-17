@@ -7,7 +7,7 @@ import java.util.List;
  * 旅行套餐
  */
 public class Setmeal implements Serializable {
-    public static final String imgUrl = "http://r5krpq5kq.hn-bkt.clouddn.com/";
+    private final String imgUrl = "http://r5krpq5kq.hn-bkt.clouddn.com/";
 
     private Integer id;
     private String name;
@@ -18,7 +18,7 @@ public class Setmeal implements Serializable {
     private Float price;//套餐价格
     private String remark;
     private String attention;
-    private String img;//套餐对应图片存储路径
+    private String imgName;//套餐对应图片名称
     private List<TravelGroup> travelGroups;//旅行套餐对应的报团分组，多对多关系
 
     public List<TravelGroup> getTravelGroups() {
@@ -99,12 +99,15 @@ public class Setmeal implements Serializable {
         this.attention = attention;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgName() {
+        return imgName;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
+    }
+    public String getImgUrl() {
+        return imgUrl;
     }
 
 }

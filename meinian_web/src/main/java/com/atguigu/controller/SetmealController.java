@@ -73,7 +73,7 @@ public class SetmealController {
             jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_RESOURCES, imgName);
 
             // 4.返回结果
-            return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, new String[]{Setmeal.imgUrl, imgName});
+            return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, new String[]{new Setmeal().getImgUrl(), imgName});
         } catch (IOException e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.PIC_UPLOAD_FAIL);

@@ -4,6 +4,8 @@ import com.atguigu.entity.PageResult;
 import com.atguigu.entity.QueryPageBean;
 import com.atguigu.pojo.Setmeal;
 
+import java.util.List;
+
 public interface SetmealService {
 
     void add(Setmeal setmeal, Integer[] travelGroupIds);
@@ -11,4 +13,8 @@ public interface SetmealService {
     PageResult findPage(QueryPageBean queryPageBean);
 
     void delete(Integer id);
+
+    List<Setmeal> getAll();
+
+    Setmeal getById(Integer id);
 }

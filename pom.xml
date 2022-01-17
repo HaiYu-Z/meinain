@@ -15,6 +15,7 @@
         <module>meinian_service</module>
         <module>meinian_web</module>
         <module>meinian_jobs</module>
+        <module>meinian_mobile_web</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -240,6 +241,26 @@
                 <groupId>xml-apis</groupId>
                 <artifactId>xml-apis</artifactId>
                 <version>1.4.01</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-util</artifactId>
+                <version>9.3.7.v20160115</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

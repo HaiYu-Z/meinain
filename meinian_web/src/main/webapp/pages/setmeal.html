@@ -253,7 +253,7 @@
                 //文件上传成功后的钩子，response为服务端返回的值，file为当前上传的文件封装成的js对象
                 handleAvatarSuccess(response, file) {
                     this.imageUrl = response.data[0] + response.data[1]
-                    this.formData.img = response.data[1]
+                    this.formData.imgName = response.data[1]
                     // this.formData.img = response.data[1]
                 },
                 //上传图片之前执行
@@ -287,19 +287,31 @@
                 },
                 // 删除
                 handleDelete(row) {
-                    axios.get("/Setmeal/delete.do?id=" + row.id).then((resp) => {
-                        if (resp.data.flag) {
-                            // 删除数据后，当前分页没有数据，自动跳转到上一页
-                            if (this.pagination.total % this.pagination.pageSize === 1 && this.pagination.currentPage !== 1) {
-                                this.pagination.currentPage -= 1
+                    this.$confirm('此操作将永久删除该自由行, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning',
+                        center: true
+                    }).then(() => {
+                        axios.get("/Setmeal/delete.do?id=" + row.id).then((resp) => {
+                            if (resp.data.flag) {
+                                // 删除数据后，当前分页没有数据，自动跳转到上一页
+                                if (this.pagination.total % this.pagination.pageSize === 1 && this.pagination.currentPage !== 1) {
+                                    this.pagination.currentPage -= 1
+                                }
+                                this.findPage()
+                                this.dialogFormVisible = false
+                                this.$message.success(resp.data.message)
+                            } else {
+                                this.$message.error(resp.data.message)
                             }
-                            this.findPage()
-                            this.dialogFormVisible = false
-                            this.$message.success(resp.data.message)
-                        } else {
-                            this.$message.error(resp.data.message)
-                        }
-                    })
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
                 },
                 //分页查询
                 findPage() {

@@ -34,6 +34,16 @@ public class SetmealServiceImpl implements SetmealService {
     }
 
     @Override
+    public Setmeal getById(Integer id) {
+        return setmealDao.getById(id);
+    }
+
+    @Override
+    public List<Setmeal> getAll() {
+        return setmealDao.getAll();
+    }
+
+    @Override
     public void delete(Integer id) {
         setmealDao.deleteTravelGroupIdBySetmealId(id);
         setmealDao.delete(id);
@@ -47,7 +57,7 @@ public class SetmealServiceImpl implements SetmealService {
 
         // 补充代码 用于解决七牛云垃圾图片问题
         // 将图片名称存入Redis, 基于Redis的Set集合存储
-        jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES, setmeal.getImg());
+        jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES, setmeal.getImgName());
 
         // 保存关联数据
         if (travelGroupIds.length > 0) {

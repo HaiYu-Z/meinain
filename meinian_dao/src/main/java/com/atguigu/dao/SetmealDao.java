@@ -18,4 +18,8 @@ public interface SetmealDao {
     void delete(Integer id);
 
     void deleteTravelGroupIdBySetmealId(Integer id);
+
+    List<Setmeal> getAll();
+
+    Setmeal getById(Integer id);
 }

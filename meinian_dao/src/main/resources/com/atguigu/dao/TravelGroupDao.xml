@@ -68,6 +68,25 @@
     <select id="getAll" resultType="com.atguigu.pojo.TravelGroup">
         select id,code,name,helpCode,sex,remark,attention from t_travelgroup
     </select>
+
+
+    <resultMap id="TravelGroupResultMap" type="travelGroup">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+
+        <collection property="travelItems" column="id"
+                    select="com.atguigu.dao.TravelItemDao.getTravelItemById"/>
+    </resultMap>
+
+    <select id="getTravelGroupById" parameterType="integer" resultMap="TravelGroupResultMap">
+        select * from t_travelgroup
+        where id in (select travelgroup_id from t_setmeal_travelgroup where setmeal_id=#{id})
+    </select>
 </mapper>
 
 
