@@ -17,4 +17,6 @@ public interface SetmealService {
     List<Setmeal> getAll();
 
     Setmeal getById(Integer id);
+
+    Setmeal getSetmealById(Integer id);
 }

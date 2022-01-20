@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderSettingDao {
 
-    int findOrderSettingByOrderDate(@Param("orderDate") String orderDate);
+    OrderSetting findOrderSettingByOrderDate(@Param("orderDate") String orderDate);
 
     void add(OrderSetting orderSetting);
 
@@ -15,4 +15,6 @@ public interface OrderSettingDao {
 
     List<OrderSetting> getOrderSettingByMonth(@Param("startDate") String startDate,
                                               @Param("endDate") String endDate);
+
+    void updateReservationsByOrderDate(OrderSetting orderSetting);
 }

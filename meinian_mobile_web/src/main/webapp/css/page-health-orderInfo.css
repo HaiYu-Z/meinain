@@ -627,7 +627,7 @@ i {
 
 .form-info .info-form .input-row label {
   color: #555;
-  flex: 1;
+  flex: 0.5;
   font-size: 14px;
 }
 
@@ -710,7 +710,8 @@ i {
   border-radius: 0;
   padding: 3.6% 0;
   border: none;
-  background-image: linear-gradient(90deg, #26acff, #0088dc);
+  /*background-image: linear-gradient(90deg, #26acff, #0088dc);*/
+  background-image: linear-gradient(90deg, #68b9ff, #409eff);
 }
 
 .date_ctrl {

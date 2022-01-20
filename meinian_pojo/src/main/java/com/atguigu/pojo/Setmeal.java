@@ -106,6 +106,7 @@ public class Setmeal implements Serializable {
     public void setImgName(String imgName) {
         this.imgName = imgName;
     }
+
     public String getImgUrl() {
         return imgUrl;
     }

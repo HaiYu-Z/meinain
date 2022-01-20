@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class OrderSettingController {
             orderSettingService.addBatch(listData);
 
             return new Result(true, MessageConstant.UPLOAD_SUCCESS);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, MessageConstant.UPLOAD_FAIL);
         }

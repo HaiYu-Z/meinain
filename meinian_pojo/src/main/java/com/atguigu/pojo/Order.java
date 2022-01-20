@@ -1,7 +1,6 @@
 package com.atguigu.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 。旅行团订单(预约)信息
@@ -13,7 +12,7 @@ public class Order implements Serializable{
     public static final String ORDERSTATUS_NO = "未出游";
     private Integer id;
     private Integer memberId;//会员id
-    private Date orderDate;//预约日期
+    private String orderDate;//预约日期
     private String orderType;//预约类型 电话预约/微信预约
     private String orderStatus;//预约状态（是否出游）
     private Integer setmealId;//旅行套餐id
@@ -25,7 +24,7 @@ public class Order implements Serializable{
         this.id = id;
     }
 
-    public Order(Integer memberId, Date orderDate, String orderType, String orderStatus, Integer setmealId) {
+    public Order(Integer memberId, String orderDate, String orderType, String orderStatus, Integer setmealId) {
         this.memberId = memberId;
         this.orderDate = orderDate;
         this.orderType = orderType;
@@ -33,7 +32,7 @@ public class Order implements Serializable{
         this.setmealId = setmealId;
     }
 
-    public Order(Integer id, Integer memberId, Date orderDate, String orderType, String orderStatus, Integer setmealId) {
+    public Order(Integer id, Integer memberId, String orderDate, String orderType, String orderStatus, Integer setmealId) {
         this.id = id;
         this.memberId = memberId;
         this.orderDate = orderDate;
@@ -58,11 +57,11 @@ public class Order implements Serializable{
         this.memberId = memberId;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

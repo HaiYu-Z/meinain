@@ -22,4 +22,6 @@ public interface SetmealDao {
     List<Setmeal> getAll();
 
     Setmeal getById(Integer id);
+
+    Setmeal getSetmealById(Integer id);
 }

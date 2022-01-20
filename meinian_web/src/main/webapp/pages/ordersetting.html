@@ -208,6 +208,7 @@
 				//上传成功提示
                 handleSuccess(response, file) {
                     if(response.flag){
+                        this.initOrderSetting()
                         this.$message({
                             message: response.message,
                             type: 'success'

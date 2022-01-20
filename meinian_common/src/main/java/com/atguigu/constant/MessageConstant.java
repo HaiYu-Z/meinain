@@ -42,7 +42,7 @@ public class MessageConstant {
     public static final String UPDATE_MEMBER_SUCCESS = "编辑会员成功";
     public static final String TELEPHONE_VALIDATECODE_NOTNULL = "手机号和验证码都不能为空";
     public static final String LOGIN_SUCCESS = "登录成功";
-    public static final String VALIDATECODE_ERROR = "验证码输入错误";
+    public static final String VALIDATECODE_ERROR = "验证码错误";
     public static final String QUERY_ORDER_SUCCESS = "查询预约信息成功";
     public static final String QUERY_ORDER_FAIL = "查询预约信息失败";
     public static final String QUERY_SETMEALLIST_SUCCESS = "查询套餐列表数据成功";
@@ -51,7 +51,7 @@ public class MessageConstant {
     public static final String QUERY_SETMEAL_FAIL = "查询套餐数据失败";
     public static final String SEND_VALIDATECODE_FAIL = "验证码发送失败";
     public static final String SEND_VALIDATECODE_SUCCESS = "验证码发送成功";
-    public static final String SELECTED_DATE_CANNOT_ORDER = "所选日期不能进行旅游预约";
+    public static final String SELECTED_DATE_CANNOT_ORDER = "所选日期还未开放进行旅游预约";
     public static final String ORDER_FULL = "预约已满";
     public static final String ORDER_FAIL = "预约失败";
     public static final String HAS_ORDERED = "已经完成预约，不能重复预约";

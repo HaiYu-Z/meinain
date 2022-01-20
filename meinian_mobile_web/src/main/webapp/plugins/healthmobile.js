@@ -44,12 +44,8 @@ function getSpecifiedDate(date,days) {
  3--最后以0-9的9个整数结尾。
  */
 function checkTelephone(telephone) {
-    var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
-    if (!reg.test(telephone)) {
-        return false;
-    } else {
-        return true;
-    }
+    var reg=/^[1][3,4,5,6,7,8,9][0-9]{9}$/;
+    return reg.test(telephone);
 }
 
 /**
@@ -57,27 +53,24 @@ function checkTelephone(telephone) {
  * 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
  */
 function checkIdCard(idCard){
-    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-    if(reg.test(idCard)){
-        return true;
-    }else{
-        return false;
-    }
+    var reg = /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}[0-9Xx]$)/;
+    return reg.test(idCard);
 }
 
-var clock = '';//定时器对象，用于页面30秒倒计时效果
-var nums = 30;
-var validateCodeButton;
-//基于定时器实现30秒倒计时效果
-function doLoop() {
-    validateCodeButton.disabled = true;//将按钮置为不可点击
-    nums--;
-    if (nums > 0) {
-        validateCodeButton.value = nums + '秒后重新获取';
-    } else {
-        clearInterval(clock); //清除js定时器
-        validateCodeButton.disabled = false;
-        validateCodeButton.value = '重新获取验证码';
-        nums = 30; //重置时间
-    }
-}
+// var clock = '';//定时器对象，用于页面30秒倒计时效果
+// var nums = 60;
+// var validateCodeButton;
+// var btnVal;
+// //基于定时器实现30秒倒计时效果
+// function doLoop() {
+//     validateCodeButton.disabled = true;//将按钮置为不可点击
+//     nums--;
+//     if (nums > 0) {
+//         btnVal = nums + '秒后重新获取';
+//     } else {
+//         clearInterval(clock); //清除js定时器
+//         validateCodeButton.disabled = false;
+//         btnVal = '重新获取验证码';
+//         nums = 60; //重置时间
+//     }
+// }

@@ -91,7 +91,7 @@
                 window.location.href = "orderInfo.html?id=" + id;
             }
         },
-        mounted(){
+        created(){
             axios.post("/setmeal/getById.do?id=" + id).then((response) => {
                 if (response.data.flag) {
                     console.log(response)

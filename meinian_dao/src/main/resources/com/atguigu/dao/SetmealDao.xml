@@ -60,4 +60,8 @@
     <select id="getById" parameterType="integer" resultMap="SetmealResultMap">
         select * from t_setmeal where id=#{id}
     </select>
+
+    <select id="getSetmealById" parameterType="integer" resultType="setmeal">
+        select * from t_setmeal where id=#{id}
+    </select>
 </mapper>

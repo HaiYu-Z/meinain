@@ -19,6 +19,17 @@ public class Member implements Serializable{
     private Date birthday;//出生日期
     private String remark;//备注
 
+    public Member() {
+    }
+
+    public Member(String name, String sex, String idCard, String phoneNumber, Date regTime) {
+        this.name = name;
+        this.sex = sex;
+        this.idCard = idCard;
+        this.phoneNumber = phoneNumber;
+        this.regTime = regTime;
+    }
+
     public Integer getId() {
         return id;
     }

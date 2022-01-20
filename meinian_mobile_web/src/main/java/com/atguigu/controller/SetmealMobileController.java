@@ -27,6 +27,17 @@ public class SetmealMobileController {
         }
     }
 
+    @RequestMapping("/getSetmealById")
+    public Result getSetmealById(Integer id) {
+        try {
+            Setmeal setmeal = setmealService.getSetmealById(id);
+            return new Result(true, MessageConstant.QUERY_SETMEAL_SUCCESS, setmeal);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, MessageConstant.QUERY_SETMEAL_FAIL);
+        }
+    }
+
     @RequestMapping("/getAll")
     public Result getAll() {
         try {

@@ -18,21 +18,16 @@ public class OrderSettingServiceImpl implements OrderSettingService {
     @Override
     public void addBatch(List<OrderSetting> listData) {
         for (OrderSetting orderSetting : listData) {
-            // 如果日期在数据库存在则修改
-            int count = orderSettingDao.findOrderSettingByOrderDate(orderSetting.getOrderDate());
-            if (count > 0) {
-                orderSettingDao.updateForOrderDate(orderSetting);
-            } else {
-                orderSettingDao.add(orderSetting);
-            }
+            updateAndAdd(orderSetting);
         }
     }
 
     @Override
     public void updateAndAdd(OrderSetting orderSetting) {
         // 如果日期在数据库存在则修改
-        int count = orderSettingDao.findOrderSettingByOrderDate(orderSetting.getOrderDate());
-        if (count > 0) {
+        String orderDate = orderSetting.getOrderDate();
+        OrderSetting orderSettingByOrderDate = orderSettingDao.findOrderSettingByOrderDate(orderDate);
+        if (orderSettingByOrderDate != null) {
             orderSettingDao.updateForOrderDate(orderSetting);
         } else {
             orderSettingDao.add(orderSetting);
