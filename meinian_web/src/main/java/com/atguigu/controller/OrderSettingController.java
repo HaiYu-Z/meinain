@@ -6,7 +6,6 @@ import com.atguigu.entity.Result;
 import com.atguigu.pojo.OrderSetting;
 import com.atguigu.service.OrderSettingService;
 import com.atguigu.utli.POIUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +33,7 @@ public class OrderSettingController {
     }
 
     @RequestMapping("/updateAndAdd")
-    public Result updateAndAdd(@RequestBody OrderSetting orderSetting) {
+    public Result updateAndAdd(OrderSetting orderSetting) {
         try {
             orderSettingService.updateAndAdd(orderSetting);
             return new Result(true, MessageConstant.ORDERSETTING_SUCCESS);

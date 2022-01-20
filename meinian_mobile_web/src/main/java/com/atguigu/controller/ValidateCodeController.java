@@ -19,15 +19,26 @@ public class ValidateCodeController {
     @Autowired
     JedisPool jedisPool;
 
-    @RequestMapping("/sendForOrder")
-    public Result sendForOrder(String telephone) {
+    @RequestMapping("/send")
+    public Result send(String telephone, String state) {
         try {
             // 1.生成4位验证码
             String code = ValidateCodeUtils.generateValidateCode(4).toString();
             // 2.发送验证码
             SMSUtils.sendShortMessage(telephone, code);
+            // 手机号加上后缀，防止在redis中被覆盖
+            switch (state) {
+                case "order":
+                    state = RedisMessageConstant.SENDTYPE_ORDER;
+                    break;
+                case "login":
+                    state = RedisMessageConstant.SENDTYPE_LOGIN;
+                    break;
+                case "getpwd":
+                    state = RedisMessageConstant.SENDTYPE_GETPWD;
+            }
             // 3.将将验证码存储到redis中，便于后期验证
-            jedisPool.getResource().setex(telephone + RedisMessageConstant.SENDTYPE_ORDER, 5 * 60, code);
+            jedisPool.getResource().setex(telephone + state, 5 * 60, code);
 
             logger.info("telephone = " + telephone + " code = " + code);
             return new Result(true, MessageConstant.SEND_VALIDATECODE_SUCCESS);

@@ -82,7 +82,7 @@
                         <div class="input-row">
                             <label>手机号</label>
                             <input v-model="orderInfo.telephone" type="text" class="input-clear" placeholder="请输入手机号">
-                            <el-button style="font-size: x-small;" id="validateCodeButton" @click="sendValidateCode()"
+                            <el-button style="font-size: x-small;" @click="sendValidateCode()"
                                        size="medium" type="primary" v-bind:disabled="btnDisabled">{{btnVal}}</el-button>
                         </div>
                         <div class="input-row">
@@ -125,7 +125,7 @@
                         }
 
                         // 发送验证码
-                        axios.get("/validateCode/sendForOrder.do?telephone=" + this.orderInfo.telephone).then((resp) => {
+                        axios.get("/validateCode/send.do?telephone=" + this.orderInfo.telephone + "&state=order").then((resp) => {
                             if (resp.data.flag) {
                                 // 发送验证码后倒计时
                                 this.btnDisabled = true // 将按钮置为不可点击

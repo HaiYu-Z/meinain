@@ -575,8 +575,8 @@ i {
   margin-left: 90px;
   min-width: 230px;
 }
-.loginInput #account{
-  width: 45%;
+.loginInput #password{
+  width: 60%;
 }
 .login #login-form .input-row {
   clear: left;
