@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.dao.UserDao">
+
+    <resultMap id="userMap" type="com.atguigu.pojo.User">
+        <result column="birthday" property="birthday"/>
+        <result column="gender" property="gender"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="remark" property="remark"/>
+        <result column="station" property="station"/>
+        <result column="telephone" property="telephone"/>
+        <collection property="roles" column="id" select="com.atguigu.dao.RoleDao.findRolesByUserId"/>
+    </resultMap>
+
+    <select id="findUserByUsername" resultMap="userMap">
+        select u.* from t_user u where username = #{username}
+    </select>
+</mapper>

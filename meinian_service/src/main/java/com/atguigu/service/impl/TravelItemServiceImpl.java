@@ -28,8 +28,6 @@ public class TravelItemServiceImpl implements TravelItemService {
     public PageResult findPage(QueryPageBean queryPageBean) {
         PageHelper.startPage(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         Page page = travelItemDao.findPage(queryPageBean.getQueryString());
-        System.out.println(page.getTotal());
-        System.out.println(page.getResult());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
