@@ -33,7 +33,7 @@
                              username-parameter="username"
                              password-parameter="password"
                              login-processing-url="/login.do"
-                             default-target-url="/pages/main.html"
+                             default-target-url="/index.html"
                              authentication-failure-url="/login.html"
                              always-use-default-target="true"
         />

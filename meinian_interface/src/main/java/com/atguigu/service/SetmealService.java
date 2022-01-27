@@ -5,6 +5,7 @@ import com.atguigu.entity.QueryPageBean;
 import com.atguigu.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 public interface SetmealService {
 
@@ -19,4 +20,6 @@ public interface SetmealService {
     Setmeal getById(Integer id);
 
     Setmeal getSetmealById(Integer id);
+
+    List<Map> getSetmealReport();
 }

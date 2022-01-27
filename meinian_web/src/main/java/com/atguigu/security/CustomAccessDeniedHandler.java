@@ -19,11 +19,13 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request,HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException,ServletException {
-        if (isAjaxRequest(request)) {// AJAX请求,使用response发送403
+        // AJAX请求,使用response发送403
+        if (isAjaxRequest(request)) {
             Result result = new Result(false, "无权访问","403");
             String json = JSON.toJSONString(result);
             response.getWriter().print(json);
-        } else{// 同步请求处理
+        } else{
+            // 同步请求处理
             request.getRequestDispatcher("/pages/error/403.html").forward(request,response);
         }
     }

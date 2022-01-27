@@ -33,7 +33,7 @@ public class TravelItemController {
     }
 
     @RequestMapping("/delete")
-    @PreAuthorize("hasAuthority('TRAVELITEM_DELETE123')")//权限校验
+    @PreAuthorize("hasAuthority('TRAVELITEM_DELETE')")//权限校验
     public Result delete(Integer id) {
         try {
             travelItemService.delete(id);

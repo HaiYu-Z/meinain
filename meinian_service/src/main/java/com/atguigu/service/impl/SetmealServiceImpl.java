@@ -44,6 +44,11 @@ public class SetmealServiceImpl implements SetmealService {
     }
 
     @Override
+    public List<Map> getSetmealReport() {
+        return setmealDao.getSetmealReport();
+    }
+
+    @Override
     public List<Setmeal> getAll() {
         return setmealDao.getAll();
     }
