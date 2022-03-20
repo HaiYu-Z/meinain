@@ -7,7 +7,7 @@ import java.util.List;
  * 旅行套餐
  */
 public class Setmeal implements Serializable {
-    private final String imgUrl = "http://r5krpq5kq.hn-bkt.clouddn.com/";
+    private final String imgUrl = "https://meinian-0306.oss-cn-guangzhou.aliyuncs.com/";
 
     private Integer id;
     private String name;

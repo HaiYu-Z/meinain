@@ -33,4 +33,6 @@ public interface TravelGroupDao {
      * @return
      */
     List<TravelGroup> getTravelGroupById(Integer id);
+
+    Integer[] getTravelGroupIdsBySetmealId(Integer id);
 }

@@ -53,7 +53,7 @@
             </el-header>
             <el-container>
                 <el-aside width="200px">
-                    <el-menu>
+                    <el-menu :default-openeds='["0","1"]'>
                         <el-submenu v-for="menu in menuList" :index="menu.path">
                             <template slot="title">
                                 <i class="fa" :class="menu.icon"></i>
@@ -68,7 +68,7 @@
                     </el-menu>
                 </el-aside>
                 <el-container>
-                    <iframe name="right" class="el-main" src="pages/report_business.html" width="100%" height="580px" frameborder="1"></iframe>
+                    <iframe name="right" class="el-main" src="pages/ordersetting.html" width="100%" height="580px" frameborder="1"></iframe>
                 </el-container>
             </el-container>
         </el-container>
@@ -85,66 +85,30 @@
         data:{
             menuList:[
                 {
-                    "path": "1",
-                    "title": "旅行社",
-                    "icon":"fa-dashboard",
-                    "children": []
-                },
-                {
-                    "path": "2",
-                    "title": "旅行管理",
-                    "icon":"fa-user-md",
-                    "children": [
-                        {
-                            "path": "/2-1",
-                            "title": "会员档案",
-                            "linkUrl":"/pages/member.html",
-                            "children":[]
-                        },
-                        {
-                            "path": "/2-2",
-                            "title": "会员信息上传",
-                            "children":[]
-                        },
-                        {
-                            "path": "/2-3",
-                            "title": "会员统计",
-                            "linkUrl":"/pages/all-item-list.html",
-                            "children":[]
-                        },
-                    ]
-                },
-                {
-                    "path": "3",
+                    "path": "0",
                     "title": "旅游后台",
                     "icon":"fa-tty",
                     "children": [
                         {
-                            "path": "/3-1",
-                            "title": "分公司地址",
-                            "linkUrl":"/pages/address.html",
-                            "children":[]
-                        },
-                        {
-                            "path": "/3-2",
+                            "path": "/0-1",
                             "title": "旅游预约",
                             "linkUrl":"/pages/ordersetting.html",
                             "children":[]
                         },
                         {
-                            "path": "/3-3",
+                            "path": "/0-2",
                             "title": "套餐游",
                             "linkUrl":"/pages/setmeal.html",
                             "children":[]
                         },
                         {
-                            "path": "/3-4",
+                            "path": "/0-3",
                             "title": "跟团游",
                             "linkUrl":"/pages/travelgroup.html",
                             "children":[]
                         },
                         {
-                            "path": "/3-5",
+                            "path": "/0-4",
                             "title": "自由行",
                             "linkUrl":"/pages/travelitem.html",
                             "children":[]
@@ -152,37 +116,24 @@
                     ]
                 },
                 {
-                    "path": "4",
-                    "title": "旅游评估",
-                    "icon":"fa-stethoscope",
-                    "children":[
-                        {
-                            "path": "/4-1",
-                            "title": "大家一起游",
-                            "linkUrl":"/pages/all-medical-list.html",
-                            "children":[]
-                        },
-                    ]
-                },
-                {
-                    "path": "5",     //菜单项所对应的路由路径
+                    "path": "1",     //菜单项所对应的路由路径
                     "title": "信息系统",     //菜单项名称
                     "icon":"fa-heartbeat",
                     "children":[//是否有子菜单，若没有，则为[]
                         {
-                            "path": "/5-1",
+                            "path": "/1-1",
                             "title": "注册会员按月份数量统计",
                             "linkUrl":"/pages/report_member.html",
                             "children":[]
                         },
                         {
-                            "path": "/5-2",
+                            "path": "/1-2",
                             "title": "预约套餐人数比例统计",
                             "linkUrl":"/pages/report_setmeal.html",
                             "children":[]
                         },
 						{
-							"path": "/5-3",
+							"path": "/1-3",
 							"title": "运营数据统计",
 							"linkUrl":"/pages/report_business.html",
 							"children":[]

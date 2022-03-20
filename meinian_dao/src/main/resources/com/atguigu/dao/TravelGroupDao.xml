@@ -87,6 +87,10 @@
         select * from t_travelgroup
         where id in (select travelgroup_id from t_setmeal_travelgroup where setmeal_id=#{id})
     </select>
+
+    <select id="getTravelGroupIdsBySetmealId" parameterType="integer" resultType="integer">
+        select `travelgroup_id` from `t_setmeal_travelgroup` where `setmeal_id` = #{id}
+    </select>
 </mapper>
 
 

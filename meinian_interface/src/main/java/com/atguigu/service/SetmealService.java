@@ -22,4 +22,6 @@ public interface SetmealService {
     Setmeal getSetmealById(Integer id);
 
     List<Map> getSetmealReport();
+
+    void update(Setmeal setmeal, Integer[] travelGroupIds);
 }

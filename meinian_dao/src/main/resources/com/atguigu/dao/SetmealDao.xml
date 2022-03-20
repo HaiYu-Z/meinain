@@ -70,4 +70,46 @@
         from t_setmeal s,t_order o where s.id = o.setmeal_id
         group BY s.name
     </select>
+
+    <update id="update" parameterType="com.atguigu.pojo.Setmeal">
+        update t_setmeal
+        <set>
+            <if test="name != null and name.length > 0">
+                name = #{name},
+            </if>
+            <if test="code != null and code.length > 0">
+                code = #{code},
+            </if>
+            <if test="helpCode != null and helpCode.length > 0">
+                helpCode = #{helpCode},
+            </if>
+            <if test="sex != null and sex.length > 0">
+                sex = #{sex},
+            </if>
+            <if test="age != null and age.length > 0">
+                age = #{age},
+            </if>
+            <if test="price != null and price > 0">
+                price = #{price},
+            </if>
+            <if test="remark != null and remark.length > 0">
+                remark = #{remark},
+            </if>
+            <if test="attention != null and attention.length > 0">
+                attention = #{attention},
+            </if>
+            <if test="imgName != null and imgName.length > 0">
+                imgName = #{imgName}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="setSetmealIdAndtravelGroupIds" parameterType="list">
+        insert into t_setmeal_travelgroup(setmeal_id, travelgroup_id)
+        values
+        <foreach collection="paramData" item="item" separator=",">
+            (#{item.id}, #{item.ids})
+        </foreach>
+    </insert>
 </mapper>

@@ -29,7 +29,7 @@
     <!-- 指定应用名称 -->
     <dubbo:application name="meinian_mobile_web" />
     <!--指定服务注册中心地址-->
-    <dubbo:registry address="zookeeper://101.33.206.5:2181"/>
+    <dubbo:registry address="zookeeper://localhost:2181"/>
     <!--批量扫描-->
     <dubbo:annotation package="com.atguigu.controller" />
     <!--

@@ -43,6 +43,7 @@ public class SetmealServiceImpl implements SetmealService {
         return setmealDao.getSetmealById(id);
     }
 
+
     @Override
     public List<Map> getSetmealReport() {
         return setmealDao.getSetmealReport();
@@ -51,6 +52,20 @@ public class SetmealServiceImpl implements SetmealService {
     @Override
     public List<Setmeal> getAll() {
         return setmealDao.getAll();
+    }
+
+    @Override
+    public void update(Setmeal setmeal, Integer[] travelGroupIds) {
+        setmealDao.update(setmeal);
+        Integer id = setmeal.getId();
+
+        // 先删除中间表的关联数据
+        setmealDao.deleteTravelGroupIdBySetmealId(id);
+        // 重新再增加关联数据
+        if (travelGroupIds.length > 0) {
+            List<Map<String, Integer>> paramData = Utils.ergodicForIdsArray(id, travelGroupIds);
+            setmealDao.setSetmealIdAndtravelGroupIds(paramData);
+        }
     }
 
     @Override

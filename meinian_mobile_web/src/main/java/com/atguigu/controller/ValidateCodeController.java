@@ -36,6 +36,9 @@ public class ValidateCodeController {
                     break;
                 case "getpwd":
                     state = RedisMessageConstant.SENDTYPE_GETPWD;
+                    break;
+                default:
+
             }
             // 3.将将验证码存储到redis中，便于后期验证
             jedisPool.getResource().setex(telephone + state, 5 * 60, code);

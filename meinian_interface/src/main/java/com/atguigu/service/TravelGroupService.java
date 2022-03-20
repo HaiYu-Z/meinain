@@ -21,4 +21,6 @@ public interface TravelGroupService {
     void update(TravelGroup travelGroup, Integer[] travelItemIds);
 
     List<TravelGroup> getAll();
+
+    Integer[] getTravelGroupIdsBySetmealId(Integer id);
 }

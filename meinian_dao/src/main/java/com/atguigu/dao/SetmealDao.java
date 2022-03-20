@@ -26,4 +26,8 @@ public interface SetmealDao {
     Setmeal getSetmealById(Integer id);
 
     List<Map> getSetmealReport();
+
+    void update(Setmeal setmeal);
+
+    void setSetmealIdAndtravelGroupIds(@Param("paramData") List<Map<String, Integer>> paramData);
 }

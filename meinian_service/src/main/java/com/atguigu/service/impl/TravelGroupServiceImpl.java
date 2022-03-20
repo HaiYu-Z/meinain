@@ -69,20 +69,12 @@ public class TravelGroupServiceImpl implements TravelGroupService {
     }
 
     @Override
+    public Integer[] getTravelGroupIdsBySetmealId(Integer id) {
+        return travelGroupDao.getTravelGroupIdsBySetmealId(id);
+    }
+
+    @Override
     public List<TravelGroup> getAll() {
         return travelGroupDao.getAll();
     }
-
-    // private void setTravelGroupAndTravelItem(Integer id, Integer[] travelItemIds) {
-    //     if (travelItemIds != null && travelItemIds.length > 0) {
-    //         List<Map<String, Integer>> paramData = new ArrayList<>();
-    //         for (Integer travelItemId : travelItemIds) {
-    //             Map<String, Integer> map = new HashMap<>();
-    //             map.put("travelGroupId", id);
-    //             map.put("travelItemId", travelItemId);
-    //             paramData.add(map);
-    //         }
-    //         travelGroupDao.setTravelGroupAndTravelItem(paramData);
-    //     }
-    // }
 }
