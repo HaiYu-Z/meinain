@@ -150,7 +150,7 @@
                 if (resp.data.flag) {
                     this.username = resp.data.data
                 } else {
-                    this.$message.error(resp.data.message)
+                    window.location.href="/login.html"
                 }
             })
         }
